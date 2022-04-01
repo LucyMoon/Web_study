@@ -16,9 +16,22 @@
                     <a class="nav-link" href="/todo.jsp">TODO</a>
                 </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="text" placeholder="Search">
-                <button class="btn btn-info" type="button">Search</button>
+            <form class="d-flex" action="loginproc.jsp">
+                <%
+                    String username = (String) session.getAttribute("username");
+                    if (username == null) {
+                %>
+                <input class="form-control me-2" type="text" placeholder="ID" name="id">
+                <input class="form-control me-2" type="text" placeholder="PASSWORD" name="pw">
+                <input class="btn btn-info" type="submit" value="Login"/>
+                <%
+                    }else {
+                %>
+                <h4 class="text-info"><%=username%></h4>
+                <a class="btn btn-info" href="logout.jsp">LOGOUT</a>
+                <%
+                    }
+                %>
             </form>
         </div>
     </div>

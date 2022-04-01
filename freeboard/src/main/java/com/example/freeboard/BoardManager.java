@@ -66,6 +66,52 @@ public class BoardManager {
         return list;
     }
 
+    public List<Member> MemberList(int pagenum) throws Exception{
+        int startnum = (pagenum - 1) * 5;
+        List<Member> list = new ArrayList<>();
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            con = DBManager.connect();
+            pstmt = con.prepareStatement("select * from member order by id desc limit "+startnum+", 5");
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                Member member = new Member();
+                member.setIdx(rs.getInt("id"));
+                member.setId(rs.getString("username"));
+                member.setPassword(rs.getString("password"));
+                list.add(member);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            DBManager.close(con,pstmt,rs);
+        }
+
+        return list;
+    }
+
+    public int getMemberCnt() throws Exception {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            con = DBManager.connect();
+            pstmt = con.prepareStatement("select ceil(count(idx)/5) as cnt from member");
+            rs = pstmt.executeQuery();
+            if(rs.next())
+                return rs.getInt("cnt");
+        }catch (Exception e){
+
+        } finally {
+            DBManager.close(con,pstmt,rs);
+        }
+        return 2;
+    }
+
     public int getPageCnt() throws Exception {
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -133,5 +179,28 @@ public class BoardManager {
         }finally {
             DBManager.close(con, pstmt);
         }
+    }
+
+    public boolean doselectmember(String id, String pw) throws Exception {
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            con = DBManager.connect();
+            pstmt = con.prepareStatement("select * from member where username=? and password=? ");
+            pstmt.setString(1, id);
+            pstmt.setString(2, pw);
+            rs = pstmt.executeQuery();
+            if(rs.next()){
+                return true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            DBManager.close(con, pstmt, rs);
+        }
+
+        return false;
     }
 }
