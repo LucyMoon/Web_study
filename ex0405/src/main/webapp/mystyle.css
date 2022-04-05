@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+	font-family: 'Black Han Sans';
+}
+
+.container {
+	margin: 0 auto;
+	width: 900px;
+	background-color: #ccc;
+}
+
+.main {
+	margin: 0 auto;
+	width: 900px;
+	background-color: #eee;
+	padding: 1.5rem;
+}
+
+ul {
+	list-style: none;
+}
+
+li {
+	display: inline;
+	background-color: lime;
+	padding: 1rem;
+}
+
+a {
+	display: inline-block;
+	margin: 1rem;
+	padding: 1rem;
+	text-decoration: none;
+}
+.table{
+	width: 100%;
+	border : 1px solid #aaa;
+}
+td{
+	text-align: center;
+}
