@@ -16,20 +16,24 @@
 </head>
 <body>
 <%@ include file="nav.jsp" %>
-<div class="main">
-	<h1>select페이지</h1>
-	<table class="table">
-		<tr>
-			<th>ID</th><th>USERNAME</th><th>PASSWORD</th>
-		<tr>
-		<% for (Member member : list){ %>
-		<tr>
-			<td><%=member.getId() %></td>
-			<td><%out.println(member.getUsername()); %></td>
-			<td><%=member.getPassword() %></td>
-		<tr>
-		<% }%>
-	</table>
-</div>
+<form action="delete.jsp">
+	<div class="main">
+		<h1>select페이지</h1>
+		<table class="table">
+			<tr>
+				<th>#</th><th>ID</th><th>USERNAME</th><th>PASSWORD</th>
+			<tr>
+			<% for (Member member : list){ %>
+			<tr>
+			<td><input type="checkbox" name="id" value="<%=member.getId() %>"/></td>
+				<td><%=member.getId() %></td>
+				<td><a href="update.jsp?id=<%=member.getId() %>"><%out.println(member.getUsername()); %></a></td>
+				<td><%=member.getPassword() %></td>
+			<tr>
+			<% }%>
+		</table>
+		<input type="submit" value="삭제"/>
+	</div>
+</form>
 </body>
 </html>
