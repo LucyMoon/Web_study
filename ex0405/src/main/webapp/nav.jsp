@@ -7,12 +7,17 @@
 		<li><a href="select.jsp">select</a></li>
 	</ul>
 	<div>
-		<form>
+		<%
+			String username = (String) session.getAttribute("username");
+			if (username == null) {
+		%>
+
+		<form action="loginproc.jsp">
 			<table>
 				<tr>
 					<td>id</td>
-					<td><input type="text" name="id" /></td>
-					<td rowspan=2><input type="button" value="로그인" /></td>
+					<td><input type="text" name="username" /></td>
+					<td rowspan=2><input type="submit" value="로그인" /></td>
 				</tr>
 				<tr>
 					<td>pw</td>
@@ -20,6 +25,18 @@
 				</tr>
 			</table>
 		</form>
+
+		<%
+		} else {
+			out.println(username + "님 로그인 했음");
+		%>
+
+		<a href="logout.jsp">로그아웃</a>
+
+		<%
+		}
+		%>
+
 	</div>
 
 </div>

@@ -1,8 +1,8 @@
 <%@page import="ex0405.MemberDBManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@page import="ex0405.MemberDBManager" %>
-    <%@page import="ex0405.Member" %>
+	pageEncoding="UTF-8"%>
+<%@page import="ex0405.MemberDBManager"%>
+<%@page import="ex0405.Member"%>
 <%
 	//주소줄에 한 개 가져오기
 	//request.getParameter("id");
