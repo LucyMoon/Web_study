@@ -1,4 +1,4 @@
-<%@ page import="com.example.freeboard.BoardManager" %>
+<%@ page import="com.example.freeboard.TableManager" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.freeboard.Board" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -15,8 +15,8 @@
     board.setContent(content);
     board.setIdx(Integer.parseInt(idx));
 
-    BoardManager bm = new BoardManager();
-    bm.doupdate(board);
+    TableManager tm = new TableManager();
+    tm.doupdate(board);
 
     response.sendRedirect("board.jsp");
 %>

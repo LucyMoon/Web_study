@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.example.freeboard.BoardManager" %>
+<%@ page import="com.example.freeboard.TableManager" %>
 <%@ page import="com.example.freeboard.Board" %>
 <%
 
@@ -12,8 +12,8 @@
     board.setName(name);
     board.setContent(content);
 
-    BoardManager bm = new BoardManager();
-    bm.doinsert(board);
+    TableManager tm = new TableManager();
+    tm.doinsert(board);
     response.sendRedirect("board.jsp");
 
 %>

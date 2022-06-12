@@ -1,4 +1,4 @@
-<%@ page import="com.example.freeboard.BoardManager" %>
+<%@ page import="com.example.freeboard.TableManager" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.freeboard.Board" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -7,8 +7,8 @@
     String id = request.getParameter("id");
     String pw = request.getParameter("pw");
 
-    BoardManager bm = new BoardManager();
-    boolean ret = bm.doselectmember(id, pw);
+    TableManager tm = new TableManager();
+    boolean ret = tm.doselectmember(id, pw);
     if (ret) {
         session.setAttribute("username", id);
         response.sendRedirect("board.jsp");

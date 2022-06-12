@@ -1,4 +1,4 @@
-<%@ page import="com.example.freeboard.BoardManager" %>
+<%@ page import="com.example.freeboard.TableManager" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.freeboard.Board" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -7,9 +7,9 @@
     String idx = request.getParameter("idx");
     if(idx == null) idx = "1";
 
-    BoardManager bm = new BoardManager();
-    Board board = bm.doselectrow(Integer.parseInt(idx));
-    //int pagecnt = bm.getPageCnt();
+    TableManager tm = new TableManager();
+    Board board = tm.doselectrow(Integer.parseInt(idx));
+    //int pagecnt = tm.getPageCnt();
 //    out.println("pagecnt = "+pagecnt);
 
 %>

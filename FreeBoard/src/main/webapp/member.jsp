@@ -1,4 +1,4 @@
-<%@ page import="com.example.freeboard.BoardManager" %>
+<%@ page import="com.example.freeboard.TableManager" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.freeboard.Member" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -7,9 +7,9 @@
     String pagenum = request.getParameter("pagenum");
     if(pagenum == null) pagenum = "1";
 
-    BoardManager bm = new BoardManager();
-    List<Member> list = bm.MemberList(Integer.parseInt(pagenum));
-    int pagecnt = bm.getMemberCnt();
+    TableManager tm = new TableManager();
+    List<Member> list = tm.MemberList(Integer.parseInt(pagenum));
+    int pagecnt = tm.getMemberCnt();
 //    out.println("pagecnt = "+pagecnt);
 
 %>
