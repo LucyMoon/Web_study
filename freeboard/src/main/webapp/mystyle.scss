@@ -1,0 +1,7 @@
+// Variable overrides first
+$primary: rgb(70, 12, 195);
+$enable-shadows: true;
+$border-radius:0;
+
+// Then import Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
