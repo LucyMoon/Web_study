@@ -8,6 +8,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TableManager {
+    public void pluscount(int idx) throws Exception{
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            con = DBManager.connect();
+            pstmt = con.prepareStatement("UPDATE board SET count=(select count from ((select count from board where idx=? )) A)+1 WHERE idx=?");
+            pstmt.setInt(1, idx);
+            pstmt.setInt(2, idx);
+
+            pstmt.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            DBManager.close(con, pstmt, rs);
+        }
+    }
+
+    public boolean overlapcheck(String username) throws Exception{
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            con = DBManager.connect();
+            pstmt = con.prepareStatement("select * from member where username=?");
+            pstmt.setString(1, username);
+            rs = pstmt.executeQuery();
+            if(rs.next()){
+                return false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            DBManager.close(con, pstmt, rs);
+        }
+
+        return true;
+    }
+
     public Board doselectrow(int idx) throws Exception{
         Board board = new Board();
 
@@ -224,11 +265,10 @@ public class TableManager {
         PreparedStatement pstmt = null;
         try {
             con = DBManager.connect();
-            pstmt = con.prepareStatement("UPDATE board SET title=?, content=?, name=? WHERE idx=?");
+            pstmt = con.prepareStatement("UPDATE board SET title=?, content=? WHERE idx=?");
             pstmt.setString(1, board.getTitle());
             pstmt.setString(2, board.getContent());
-            pstmt.setString(3, board.getName());
-            pstmt.setInt(4, board.getIdx());
+            pstmt.setInt(3, board.getIdx());
             pstmt.executeUpdate();
         }catch (Exception e){
             e.printStackTrace();

@@ -41,7 +41,9 @@
         <% } %>
         </tbody>
     </table>
+    <%if(session.getAttribute("username")==null){%>
     <a class="btn btn-primary" href="register.jsp">회원가입</a>
+    <%}%>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
             <li class="page-item <%=(Integer.parseInt(pagenum) == 1)?"disabled":""%>"><a class="page-link" href="?pagenum=<%=Integer.parseInt(pagenum)-1%>">Previous</a></li>

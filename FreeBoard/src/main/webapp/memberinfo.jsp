@@ -34,8 +34,10 @@
         </div>
     </div>
     <div class="mb-3">
-        <a class="btn btn-primary" href="updatemember.jsp?idx=<%=member.getIdx()%>">글수정</a>
-        <a class="btn btn-primary" href="deletememberproc.jsp?idx=<%=member.getIdx()%>">글삭제</a>
+        <%if(session.getAttribute("username").equals(member.getId())){%>
+        <a class="btn btn-primary" href="updatemember.jsp?idx=<%=member.getIdx()%>">비밀번호수정</a>
+        <a class="btn btn-primary" href="deletememberproc.jsp?idx=<%=member.getIdx()%>">아이디삭제</a>
+        <%}%>
     </div>
 </div>
 </body>

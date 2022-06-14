@@ -9,6 +9,7 @@
 
     TableManager tm = new TableManager();
     Board board = tm.doselectrow(Integer.parseInt(idx));
+    tm.pluscount(Integer.parseInt(idx));
     //int pagecnt = tm.getPageCnt();
 //    out.println("pagecnt = "+pagecnt);
 
@@ -41,8 +42,10 @@
         </div>
     </div>
     <div class="mb-3">
+        <%if(board.getName().equals(session.getAttribute("username"))){%>
         <a class="btn btn-primary" href="update.jsp?idx=<%=board.getIdx()%>">글수정</a>
         <a class="btn btn-primary" href="deleteproc.jsp?idx=<%=board.getIdx()%>">글삭제</a>
+        <%}%>
     </div>
 </div>
 </body>

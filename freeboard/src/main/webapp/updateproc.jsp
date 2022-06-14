@@ -11,7 +11,6 @@
 
     Board board = new Board();
     board.setTitle(title);
-    board.setName(name);
     board.setContent(content);
     board.setIdx(Integer.parseInt(idx));
 

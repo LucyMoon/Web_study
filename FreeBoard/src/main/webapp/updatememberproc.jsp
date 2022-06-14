@@ -4,7 +4,7 @@
 
 <%
     String idx = request.getParameter("idx");
-    String id = request.getParameter("id");
+    String id = session.getAttribute("username").toString();
     String password = request.getParameter("password");
 
     Member member = new Member();

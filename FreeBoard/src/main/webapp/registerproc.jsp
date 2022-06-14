@@ -11,7 +11,14 @@
     member.setPassword(password);
 
     TableManager tm = new TableManager();
-    tm.doinsertmember(member);
-    response.sendRedirect("member.jsp");
+    if(tm.overlapcheck(id)) {
+        tm.doinsertmember(member);
+        response.sendRedirect("member.jsp");
+    } else {
+        out.println("<script>");
+        out.println("alert('이미 존재하는 아이디입니다.');");
+        out.println("location.href='register.jsp';");
+        out.println("</script>");
+    }
 
 %>

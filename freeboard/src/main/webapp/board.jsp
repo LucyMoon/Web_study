@@ -45,7 +45,14 @@
         <% } %>
         </tbody>
     </table>
+    <%
+        String un = (String) session.getAttribute("username");
+        if (username != null) {
+    %>
     <a class="btn btn-primary" href="insert.jsp">글쓰기</a>
+    <%
+        }
+    %>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
             <li class="page-item <%=(Integer.parseInt(pagenum) == 1)?"disabled":""%>"><a class="page-link" href="?pagenum=<%=Integer.parseInt(pagenum)-1%>">Previous</a></li>
