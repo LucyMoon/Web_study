@@ -36,6 +36,31 @@ public class TableManager {
         return board;
     }
 
+    public Member doselectmemberinfo(int idx) throws Exception{
+        Member member = new Member();
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            con = DBManager.connect();
+            pstmt = con.prepareStatement("select * from member where id=?");
+            pstmt.setInt(1, idx);
+            rs = pstmt.executeQuery();
+            if(rs.next()){
+                member.setIdx(rs.getInt("id"));
+                member.setPassword(rs.getString("password"));
+                member.setId(rs.getString("username"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            DBManager.close(con, pstmt, rs);
+        }
+
+        return member;
+    }
+
     public List<Board> doselect(int pagenum) throws Exception{
         int startnum = (pagenum - 1) * 5;
         List<Board> list = new ArrayList<>();
@@ -100,7 +125,7 @@ public class TableManager {
         ResultSet rs = null;
         try {
             con = DBManager.connect();
-            pstmt = con.prepareStatement("select ceil(count(idx)/5) as cnt from member");
+            pstmt = con.prepareStatement("select ceil(count(id)/5) as cnt from member");
             rs = pstmt.executeQuery();
             if(rs.next())
                 return rs.getInt("cnt");
@@ -179,6 +204,21 @@ public class TableManager {
         }
     }
 
+    public void dodeletemember(Integer idx) throws Exception{
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            con = DBManager.connect();
+            pstmt = con.prepareStatement("delete from member where id=?");
+            pstmt.setInt(1, idx);
+            pstmt.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            DBManager.close(con, pstmt);
+        }
+    }
+
     public void doupdate(Board board) throws Exception{
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -189,6 +229,23 @@ public class TableManager {
             pstmt.setString(2, board.getContent());
             pstmt.setString(3, board.getName());
             pstmt.setInt(4, board.getIdx());
+            pstmt.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            DBManager.close(con, pstmt);
+        }
+    }
+
+    public void doupdatemember(Member member) throws Exception{
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            con = DBManager.connect();
+            pstmt = con.prepareStatement("UPDATE member SET username=?, password=? WHERE id=?");
+            pstmt.setString(1, member.getId());
+            pstmt.setString(2, member.getPassword());
+            pstmt.setInt(3, member.getIdx());
             pstmt.executeUpdate();
         }catch (Exception e){
             e.printStackTrace();

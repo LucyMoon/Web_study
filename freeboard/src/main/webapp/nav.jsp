@@ -12,9 +12,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/member.jsp">MEMBER</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/todo.jsp">TODO</a>
-                </li>
             </ul>
             <form class="d-flex" action="loginproc.jsp">
                 <%
